@@ -17,7 +17,17 @@ export default function Footer() {
 
       <div className="footer-bottom">
         © {new Date().getFullYear()} Garg Common Service Center | Faridabad, Haryana &nbsp;|&nbsp; Powered by Digital India 🇮🇳
+        <div className="developer-credit">
+  <p>Designed & Developed by</p>
+  <h4>Anish Garg</h4>
+  <span>Software Developer</span>
+</div>
       </div>
     </footer>
   )
 }
+<div className="developer-credit">
+  <p>Designed & Developed by</p>
+  <h4>Anish Garg</h4>
+  <span>Software Developer</span>
+</div>
