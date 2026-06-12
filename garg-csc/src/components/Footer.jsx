@@ -14,14 +14,14 @@ export default function Footer() {
         <Link to="/contact">Contact</Link>
         <a href="https://csc.gov.in" target="_blank" rel="noreferrer">CSC India Portal</a>
       </div>
-
-      <div className="footer-bottom">
-        © {new Date().getFullYear()} Garg Common Service Center | Faridabad, Haryana &nbsp;|&nbsp; Powered by Digital India 🇮🇳
-        <div className="developer-credit">
+<div className="developer-credit">
   <p>Designed & Developed by</p>
   <h4>Anish Garg</h4>
   <span>Software Developer</span>
 </div>
+      <div className="footer-bottom">
+        © {new Date().getFullYear()} Garg Common Service Center | Faridabad, Haryana &nbsp;|&nbsp; Powered by Digital India 🇮🇳
+        
       </div>
     </footer>
   )
