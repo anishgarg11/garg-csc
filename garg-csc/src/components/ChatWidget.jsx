@@ -4,7 +4,7 @@ import './ChatWidget.css'
 // ✅ Apna server URL yahan set karo
 // Development mein: 'http://localhost:5000'
 // Production mein: apna deployed server URL
-const SERVER_URL = 'http://localhost:5000'
+const SERVER_URL = 'https://garg-csc-backend.onrender.com'
 
 const QUICK_REPLIES = [
   { label: '🪪 Aadhaar',    text: 'Aadhaar Card services' },
@@ -77,7 +77,7 @@ export default function ChatWidget() {
       addMsg(formatted, 'bot')
     } catch (err) {
       addMsg(
-        '⚠️ Unable to connect. Please call us at <strong>+91 XXXXX XXXXX</strong> or visit our center.',
+        '⚠️ Unable to connect. Please call us at <strong>+91 7217687044</strong> or visit our center.',
         'bot'
       )
     } finally {
