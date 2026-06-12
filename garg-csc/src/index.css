@@ -1,0 +1,127 @@
+/* ===== CSS VARIABLES — Edit colors here ===== */
+:root {
+  --saffron: #FF6B00;
+  --deep-blue: #003580;
+  --sky: #0072CE;
+  --gold: #FFC107;
+  --cream: #FFF8F0;
+  --dark: #0A1628;
+  --green: #1A7A4A;
+  --light-green: #E8F5EE;
+  --text: #1a1a2e;
+  --shadow: 0 8px 32px rgba(0, 53, 128, 0.12);
+  --font-display: 'Baloo 2', cursive;
+  --font-body: 'Poppins', sans-serif;
+}
+
+/* ===== RESET ===== */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--cream);
+  color: var(--text);
+  overflow-x: hidden;
+}
+
+/* ===== TRICOLOR BAR ===== */
+.tricolor-bar {
+  height: 5px;
+  background: linear-gradient(90deg, #FF6B00 33%, white 33% 66%, #138808 66%);
+}
+
+/* ===== SECTION UTILITY ===== */
+.section { padding: 65px 40px; }
+.section-bg { background: #eef2ff; }
+
+.section-title { text-align: center; margin-bottom: 44px; }
+.section-title h2 {
+  font-family: var(--font-display);
+  font-size: clamp(24px, 4vw, 32px);
+  font-weight: 800;
+  color: var(--deep-blue);
+  margin-bottom: 8px;
+}
+.section-title p { color: #777; font-size: 15px; }
+.title-line {
+  width: 60px; height: 4px;
+  background: linear-gradient(90deg, var(--saffron), var(--gold));
+  border-radius: 2px;
+  margin: 12px auto 0;
+}
+
+/* ===== MARQUEE ===== */
+.marquee-wrap {
+  background: var(--deep-blue);
+  padding: 12px 0;
+  overflow: hidden;
+}
+.marquee-track {
+  display: flex;
+  gap: 60px;
+  animation: marquee 30s linear infinite;
+  white-space: nowrap;
+}
+.marquee-track span {
+  color: var(--gold);
+  font-weight: 600;
+  font-size: 13px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ===== STATS BAR ===== */
+.stats-bar {
+  background: white;
+  padding: 26px 40px;
+  display: flex;
+  justify-content: center;
+  gap: 55px;
+  flex-wrap: wrap;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+}
+.stat-item { text-align: center; }
+.stat-num {
+  font-family: var(--font-display);
+  font-size: 30px;
+  font-weight: 800;
+  color: var(--deep-blue);
+}
+.stat-label { font-size: 12px; color: #777; font-weight: 500; margin-top: 2px; }
+
+/* ===== WHATSAPP FLOAT ===== */
+.wa-float {
+  position: fixed;
+  bottom: 28px; right: 28px;
+  background: #25D366;
+  color: white;
+  width: 60px; height: 60px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 28px;
+  box-shadow: 0 6px 22px rgba(37,211,102,0.5);
+  text-decoration: none;
+  z-index: 200;
+  animation: floatUp 2.5s ease-in-out infinite;
+}
+@keyframes floatUp {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-7px); }
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .section { padding: 44px 20px; }
+  .stats-bar { gap: 26px; padding: 22px 20px; }
+}
