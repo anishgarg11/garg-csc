@@ -2,9 +2,10 @@ import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { servicesData } from "../data/servicesData";
 import "./ServiceDetails.css";
-
+import { useNavigate } from "react-router-dom";
 export default function ServiceDetails() {
   const { slug } = useParams();
+  const navigate = useNavigate();
 
 const [selectedDoc, setSelectedDoc] = useState(null);
 
@@ -22,6 +23,12 @@ const [selectedDoc, setSelectedDoc] = useState(null);
 
   return (
     <section className="service-details-page">
+      <button
+  className="back-btn"
+  onClick={() => navigate("/services")}
+>
+  ← Back
+</button>
 
       <div className="service-header">
   <span className="service-icon">{service.icon}</span>

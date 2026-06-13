@@ -30,7 +30,7 @@ export default function App() {
 
       {/* WhatsApp Floating Button — change number below */}
       <a
-        href="https://wa.me/7217687044"
+        href="https://wa.me/917217687044"
         className="wa-float"
         target="_blank"
         title="Chat on WhatsApp"

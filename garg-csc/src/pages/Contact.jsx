@@ -4,7 +4,7 @@ import './Contact.css'
 const CONTACT = {
   address: 'Shop No.06, Matthi Wali Gali, Opp. Government School Gate No. 02, Faridabad, Haryana – 121003',
   phone: '+91 7217687044',         // ← Change this
-  whatsapp: 'https://wa.me/7217687044', // ← Change this
+  whatsapp: 'https://wa.me/917217687044', // ← Change this
   email: 'gargcsc11@gmail.com',
   csc_location:"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3507.1602313739145!2d77.3078895!3d28.474720800000004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce7d0936db455%3A0xbd5dcde2432a7b1c!2sGarg%20CSC%20(Common%20Service%20Center)%20%26%20Gauri%20Shankar%20Book%20Depot%20(Sarai%20Khawaja)!5e0!3m2!1sen!2sin!4v1780558074245!5m2!1sen!2sin",
   

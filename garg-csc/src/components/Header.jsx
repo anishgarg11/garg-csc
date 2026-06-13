@@ -1,16 +1,18 @@
-import { NavLink } from 'react-router-dom'
-import './Header.css'
+import { useState } from "react";
+import { NavLink } from 'react-router-dom';
+import './Header.css';
 import logo from "../../assets/logo.png";
-
 // ===== EDIT CENTER INFO HERE =====
 const CENTER = {
   name: 'Garg Common Service Center',
   location: 'Faridabad, Haryana',
   phone: '+91 7217687044',          // ← Change this
-  whatsapp: 'https://wa.me/7217687044', // ← Change this
+  whatsapp: 'https://wa.me/917217687044', // ← Change this
 }
 
 export default function Header() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
     <header className="header">
       <div className="header-top">
@@ -26,14 +28,27 @@ export default function Header() {
             <p>📍 {CENTER.location} &nbsp;|&nbsp; CSC Registered & Certified</p>
           </div>
         </div>
-
-        <nav className="nav">
-          <NavLink to="/"            className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>Home</NavLink>
-          <NavLink to="/services"    className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>Services</NavLink>
-          <NavLink to="/about"       className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>About Us</NavLink>
-          <NavLink to="/certificate" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>Certificate</NavLink>
-          <NavLink to="/contact"     className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>Contact</NavLink>
-          <a href={CENTER.whatsapp} className="nav-cta">📲 WhatsApp</a>
+<button
+  className="menu-btn"
+  onClick={() => setMenuOpen(!menuOpen)}
+>
+  {menuOpen ? "✕" : "☰"}
+</button>
+        <nav className={`nav ${menuOpen ? "nav-open" : ""}`}>
+<NavLink
+  to="/"
+  className={({ isActive }) =>
+    isActive ? "nav-link active" : "nav-link"
+  }
+  onClick={() => setMenuOpen(false)}
+>
+  Home
+</NavLink>
+<NavLink to="/services" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}onClick={() => setMenuOpen(false)}>Services</NavLink>
+          <NavLink to="/about"       className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}onClick={() => setMenuOpen(false)}>About Us</NavLink>
+          <NavLink to="/certificate" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}onClick={() => setMenuOpen(false)}>Certificate</NavLink>
+          <NavLink to="/contact"     className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}onClick={() => setMenuOpen(false)}>Contact</NavLink>
+          <a href={CENTER.whatsapp} className="nav-cta" onClick={() => setMenuOpen(false)}>💬 WhatsApp</a>
         </nav>
       </div>
     </header>
