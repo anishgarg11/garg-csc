@@ -6,7 +6,7 @@ const FEATURES = [
   'Fast and transparent service delivery',
   'Most competitive service charges in Faridabad',
   'Complete data privacy and security',
-  '4+ years of trusted service in Faridabad',
+  '5+ years of trusted service in Faridabad',
 ]
 
 export default function About() {
@@ -14,7 +14,7 @@ export default function About() {
     <section className="section">
       <div className="section-title">
         <h2>🏪 About Our Center</h2>
-        <p>Serving Faridabad citizens since 2022</p>
+        <p>Serving Faridabad citizens since 2021</p>
         <div className="title-line" />
       </div>
 
@@ -24,7 +24,7 @@ export default function About() {
           <h3>Garg Common Service Center</h3>
           <p>
             Faridabad's most trusted and efficient CSC Center — delivering
-            digital government services to citizens since 2022 under the
+            digital government services to citizens since 1 under the
             Digital India Mission.
           </p>
         </div>

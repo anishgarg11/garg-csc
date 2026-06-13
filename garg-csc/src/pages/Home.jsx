@@ -5,7 +5,7 @@ import './Home.css'
 const STATS = [
   { num: '1,000+', label: 'Citizens Served' },
   { num: '50+',    label: 'Services Available' },
-  { num: '4+',     label: 'Years of Experience' },
+  { num: '5+',     label: 'Years of Experience' },
   { num: '100%',   label: 'Government Certified' },
 ]
 
@@ -59,7 +59,7 @@ export default function Home() {
 
       {/* ── HERO ── */}
       <section className="hero">
-        <div className="hero-badge">⭐ Trusted Since 2022 &nbsp;|&nbsp; 3,000+ Citizens Served</div>
+        <div className="hero-badge">⭐ Trusted Since 2021 &nbsp;|&nbsp; 3,000+ Citizens Served</div>
         <h1>All Government Services<br /><span>Under One Roof</span></h1>
         <p>
           Aadhaar, PAN Card, Passport, Certificates, Banking, Insurance and hundreds
