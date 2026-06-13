@@ -3,7 +3,7 @@ import './Home.css'
 
 // ===== EDIT STATS HERE =====
 const STATS = [
-  { num: '1,000+', label: 'Citizens Served' },
+  { num: '3,000+', label: 'Citizens Served' },
   { num: '50+',    label: 'Services Available' },
   { num: '5+',     label: 'Years of Experience' },
   { num: '100%',   label: 'Government Certified' },
