@@ -9,6 +9,7 @@ import Certificate from './pages/Certificate'
 import Contact from './pages/Contact'
 import ServiceDetails from "./pages/ServiceDetails";
 import ReactGA from "react-ga4";
+import { useEffect } from 'react'
 export default function App() {
     useEffect(() => {
     ReactGA.initialize("G-E0W2327EGG");
