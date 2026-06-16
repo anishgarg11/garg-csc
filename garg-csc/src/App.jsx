@@ -8,8 +8,12 @@ import About from './pages/About'
 import Certificate from './pages/Certificate'
 import Contact from './pages/Contact'
 import ServiceDetails from "./pages/ServiceDetails";
-
+import ReactGA from "react-ga4";
 export default function App() {
+    useEffect(() => {
+    ReactGA.initialize("G-E0W2327EGG");
+    ReactGA.send("pageview");
+  }, []);
   return (
     <>
       <div className="tricolor-bar" />
