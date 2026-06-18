@@ -66,6 +66,18 @@ export default function Header() {
     Tools
   </NavLink>
 
+
+<NavLink
+  to="/service-charges"
+  className={({ isActive }) =>
+    isActive ? "nav-link active" : "nav-link"
+  }
+  onClick={() => setMenuOpen(false)}
+>
+  Pricing
+</NavLink>
+
+
   <NavLink
     to="/about"
     className={({ isActive }) =>

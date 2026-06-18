@@ -19,6 +19,7 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsConditions from "./pages/TermsConditions";
 import RefundPolicy from "./pages/RefundPolicy";
 import CancellationPolicy from "./pages/CancellationPolicy";
+import ServiceCharges from "./pages/ServiceCharges"
 import NotFound from './pages/NotFound';
 
 import Loader from './components/Loader';
@@ -90,6 +91,7 @@ export default function App() {
 <Route path="/terms-conditions" element={<TermsConditions />} />
 <Route path="/refund-policy" element={<RefundPolicy />} />
 <Route path="/cancellation-policy" element={<CancellationPolicy />} />
+<Route path="/service-charges" element={<ServiceCharges />} />
         <Route path="*" element={<NotFound />} />
 
       </Routes>

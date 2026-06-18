@@ -1,0 +1,153 @@
+.charges-page {
+  min-height: 100vh;
+  padding: 60px 20px;
+  background:
+    radial-gradient(circle at top left, rgba(255,107,0,.08), transparent 30%),
+    linear-gradient(135deg, #f8fbff 0%, #eef4ff 100%);
+}
+
+.charges-container {
+  max-width: 1200px;
+  margin: auto;
+}
+
+.charges-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.charges-header h1 {
+  font-size: 42px;
+  font-weight: 800;
+  color: #0b4f8a;
+  margin-bottom: 12px;
+}
+
+.charges-header p {
+  color: #64748b;
+  font-size: 17px;
+  max-width: 700px;
+  margin: auto;
+}
+
+/* Pricing Cards */
+
+.charges-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px,1fr));
+  gap: 24px;
+  margin-bottom: 50px;
+}
+
+.charge-card {
+  background: white;
+  border-radius: 22px;
+  padding: 24px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 12px 35px rgba(15,23,42,.08);
+  transition: .3s;
+  position: relative;
+  overflow: hidden;
+}
+
+.charge-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  height: 5px;
+  background: linear-gradient(90deg,#ff6b00,#0b4f8a);
+}
+
+.charge-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 45px rgba(15,23,42,.15);
+}
+
+.charge-icon {
+  font-size: 38px;
+  margin-bottom: 15px;
+}
+
+.charge-card h3 {
+  color: #0f172a;
+  margin-bottom: 10px;
+  font-size: 20px;
+}
+
+.charge-price {
+  color: #0b4f8a;
+  font-size: 32px;
+  font-weight: 800;
+}
+
+/* Detailed Table */
+
+.charges-table-wrap {
+  background: white;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 15px 40px rgba(15,23,42,.08);
+  margin-bottom: 35px;
+}
+
+.charges-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.charges-table thead {
+  background: linear-gradient(135deg,#0b4f8a,#1d75d1);
+}
+
+.charges-table th {
+  color: white;
+  text-align: left;
+  padding: 18px;
+  font-size: 15px;
+}
+
+.charges-table td {
+  padding: 18px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.charges-table tr:hover {
+  background: #f8fafc;
+}
+
+.price-cell {
+  font-weight: 700;
+  color: #0b4f8a;
+}
+
+/* Notice Box */
+
+.charges-note {
+  background: #fff7ed;
+  border: 1px solid #fed7aa;
+  border-radius: 18px;
+  padding: 22px;
+}
+
+.charges-note h3 {
+  color: #c2410c;
+  margin-bottom: 10px;
+}
+
+.charges-note p {
+  color: #7c2d12;
+  line-height: 1.7;
+}
+
+/* Mobile */
+
+@media (max-width: 768px) {
+  .charges-header h1 {
+    font-size: 32px;
+  }
+
+  .charges-table {
+    display: block;
+    overflow-x: auto;
+  }
+}
