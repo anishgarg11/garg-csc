@@ -348,10 +348,11 @@ const removeEducation = (index) => {
     );
   };
 
+  const API_BASE_URL = "https://garg-csc-backend.onrender.com";
 
   const payAndUnlock = async () => {
-  const res = await fetch("http://localhost:5000/api/create-order", {
-    method: "POST",
+const res = await fetch(`${API_BASE_URL}/api/create-order`, {   
+   method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
@@ -370,8 +371,8 @@ console.log("Order Response: ", data)
     order_id: data.order.id,
 
     handler: async function (response) {
-      const verifyRes = await fetch("http://localhost:5000/api/verify-payment", {
-        method: "POST",
+const verifyRes = await fetch(`${API_BASE_URL}/api/verify-payment`, {
+          method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
