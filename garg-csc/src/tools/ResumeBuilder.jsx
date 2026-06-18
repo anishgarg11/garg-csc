@@ -276,9 +276,43 @@ const removeEducation = (index) => {
     const element = resumeRef.current;
 
     const canvas = await html2canvas(element, {
-      scale: 2,
-      useCORS: true,
+  scale: 2,
+  useCORS: true,
+  backgroundColor: "#ffffff",
+
+  onclone: (clonedDoc) => {
+    clonedDoc.querySelectorAll("*").forEach((el) => {
+      const computed = clonedDoc.defaultView.getComputedStyle(el);
+
+      const safeColor = "#1e293b";
+      const safeBg = "#ffffff";
+
+      if (
+        computed.color.includes("color(") ||
+        computed.color.includes("oklch") ||
+        computed.color.includes("lab(")
+      ) {
+        el.style.color = safeColor;
+      }
+
+      if (
+        computed.backgroundColor.includes("color(") ||
+        computed.backgroundColor.includes("oklch") ||
+        computed.backgroundColor.includes("lab(")
+      ) {
+        el.style.backgroundColor = safeBg;
+      }
+
+      if (
+        computed.borderColor.includes("color(") ||
+        computed.borderColor.includes("oklch") ||
+        computed.borderColor.includes("lab(")
+      ) {
+        el.style.borderColor = "#e2e8f0";
+      }
     });
+  },
+});
 
     const imgData = canvas.toDataURL("image/png");
 

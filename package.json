@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "jspdf": "^4.2.1",
+    "pdf-lib": "^1.17.1",
+    "qrcode.react": "^4.2.0",
+    "react-ga4": "^3.0.1",
+    "react-image-crop": "^11.0.10"
+  }
+}
