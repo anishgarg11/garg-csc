@@ -8,7 +8,7 @@ import {
   FREE_LIMIT,
   unlockPaidDownload,
   isPaidUnlocked,
-} from "./paymentUtils";
+} from "./paymentUtils.js";
 
 import "./ResumeBuilder.css";
 
