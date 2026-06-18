@@ -104,6 +104,129 @@
   padding: 4px 11px; border-radius: 20px;
   animation: blink 1.6s infinite;
 }
+
+
+
+.business-section,
+.why-us,
+.testimonials,
+.faq-section {
+  padding: 80px 20px;
+}
+
+.business-section h2,
+.why-us h2,
+.testimonials h2,
+.faq-section h2 {
+  text-align: center;
+  font-size: 36px;
+  color: #0b4f8a;
+  margin-bottom: 20px;
+}
+
+.business-section p {
+  max-width: 900px;
+  margin: auto;
+  line-height: 1.8;
+  color: #475569;
+  text-align: center;
+}
+
+.why-grid,
+.testimonial-grid {
+  max-width: 1200px;
+  margin: 40px auto 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+  gap: 25px;
+}
+
+.why-card,
+.testimonial-card {
+  background: white;
+  padding: 25px;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0,0,0,.08);
+}
+
+.faq-item {
+  max-width: 900px;
+  margin: 15px auto;
+  background: white;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 5px 20px rgba(0,0,0,.05);
+}
+
+.payment-info {
+  background: #eef4ff;
+  border: 1px solid #dbeafe;
+  padding: 20px;
+  border-radius: 16px;
+  text-align: center;
+  margin-top: 25px;
+}
+
+.business-section {
+  padding: 70px 20px;
+  background: linear-gradient(135deg, #ffffff, #eef4ff);
+}
+
+.business-content {
+  max-width: 1100px;
+  margin: auto;
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 26px;
+  padding: 38px;
+  text-align: center;
+  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.08);
+}
+
+.business-badge {
+  display: inline-block;
+  background: #eff6ff;
+  color: #0b4f8a;
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.business-content h2 {
+  color: #0b4f8a;
+  font-size: 34px;
+  margin-bottom: 18px;
+}
+
+.business-content p {
+  color: #475569;
+  line-height: 1.8;
+  font-size: 16px;
+  margin-bottom: 14px;
+}
+
+.business-points {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-top: 24px;
+}
+
+.business-points span {
+  background: #f8fafc;
+  border: 1px solid #dbeafe;
+  color: #334155;
+  padding: 10px 14px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+
 @keyframes blink {
   0%, 100% { opacity: 1; } 50% { opacity: 0.4; }
 }

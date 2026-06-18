@@ -71,7 +71,28 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── STATS ── */}
+      {/* //Businee Description */}
+      <section className="business-section">
+  <div className="container">
+    <h2>About Garg Common Service Center</h2>
+
+    <p>
+      Garg Common Service Center is a trusted digital service provider
+      located in Faridabad, Haryana. We assist customers with Aadhaar,
+      PAN Card, Passport Services, Banking Services, Bill Payments,
+      Government Certificates, Insurance, Education Forms and other
+      digital solutions.
+    </p>
+
+    <p>
+      We also provide online tools such as Resume Builder, PDF Tools,
+      Passport Photo Maker and QR Code Generator to help users complete
+      their tasks quickly and securely.
+    </p>
+  </div>
+</section>
+
+{/* ── STATS ── */}
       <div className="stats-bar">
         {STATS.map((s) => (
           <div key={s.label} className="stat-item">
@@ -80,8 +101,9 @@ export default function Home() {
           </div>
         ))}
       </div>
+      
 
-      {/* ── SERVICES ── */}
+{/* ── SERVICES ── */}
       <section className="section section-bg" id="services">
         <div className="section-title">
           <h2>🛎️ Our Services</h2>
@@ -112,6 +134,112 @@ export default function Home() {
   )}
 </div>
       </section>
+
+      {/* // why choose us */}
+      <section className="why-us">
+  <h2>Why Choose Garg CSC?</h2>
+
+  <div className="why-grid">
+
+    <div className="why-card">
+      🔒
+      <h3>Secure Payments</h3>
+      <p>Safe and encrypted payment processing.</p>
+    </div>
+
+    <div className="why-card">
+      ⚡
+      <h3>Fast Service</h3>
+      <p>Quick processing and instant digital delivery.</p>
+    </div>
+
+    <div className="why-card">
+      🏛️
+      <h3>Government Services</h3>
+      <p>Support for multiple CSC and citizen services.</p>
+    </div>
+
+    <div className="why-card">
+      📞
+      <h3>Customer Support</h3>
+      <p>Available through phone and WhatsApp.</p>
+    </div>
+
+  </div>
+</section>
+
+
+{/* // Testimonials */}
+<section className="testimonials">
+  <h2>What Our Customers Say</h2>
+
+  <div className="testimonial-grid">
+
+    <div className="testimonial-card">
+      ⭐⭐⭐⭐⭐
+      <p>
+        Quick and professional PAN Card assistance.
+      </p>
+      <strong>Rahul Sharma</strong>
+    </div>
+
+    <div className="testimonial-card">
+      ⭐⭐⭐⭐⭐
+      <p>
+        Resume Builder was simple and generated a great PDF.
+      </p>
+      <strong>Priya Verma</strong>
+    </div>
+
+    <div className="testimonial-card">
+      ⭐⭐⭐⭐⭐
+      <p>
+        Very helpful staff and excellent service.
+      </p>
+      <strong>Amit Kumar</strong>
+    </div>
+
+  </div>
+</section>
+
+{/* // FAQS section */}
+<section className="faq-section">
+  <h2>Frequently Asked Questions</h2>
+
+  <div className="faq-item">
+    <h3>How do I download my resume?</h3>
+    <p>
+      Complete your resume and proceed with payment to
+      download the PDF.
+    </p>
+  </div>
+
+  <div className="faq-item">
+    <h3>Are payments secure?</h3>
+    <p>
+      Yes. Payments are processed through secure payment gateways.
+    </p>
+  </div>
+
+  <div className="faq-item">
+    <h3>Do you provide government services?</h3>
+    <p>
+      Yes. We assist with Aadhaar, PAN Card, Passport,
+      Certificates, Banking and many other services.
+    </p>
+  </div>
+
+  <div className="faq-item">
+    <h3>Can I contact support?</h3>
+    <p>
+      Yes. You can contact us via phone, email or WhatsApp.
+    </p>
+  </div>
+</section>
+
+      
+
+      
 
       {/* ── NOTICE BOARD ──
       <section className="section" id="notice">
