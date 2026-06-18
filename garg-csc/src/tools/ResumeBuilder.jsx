@@ -954,9 +954,7 @@ console.log("Order Response: ", data)
   </div>
 )}
 
-            <div className="resume-footer">
-              Generated using Garg CSC Resume Builder
-            </div>
+           
           </div>
         </div>
       </div>
