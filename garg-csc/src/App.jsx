@@ -6,12 +6,19 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import ChatWidget from './components/ChatWidget';
 import ResumeBuilder from "./tools/ResumeBuilder";
+import JpgToPdf from "./tools/JpgToPdf";
+import PdfMerge from "./tools/PdfMerge";
+import PassportPhoto from "./tools/PassportPhoto";
 import Home from './pages/Home';
 import Services from './pages/Services';
 import About from './pages/About';
 import Certificate from './pages/Certificate';
 import Contact from './pages/Contact';
 import ServiceDetails from './pages/ServiceDetails';
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import TermsConditions from "./pages/TermsConditions";
+import RefundPolicy from "./pages/RefundPolicy";
+import CancellationPolicy from "./pages/CancellationPolicy";
 import NotFound from './pages/NotFound';
 
 import Loader from './components/Loader';
@@ -65,6 +72,24 @@ export default function App() {
         <Route path="/tools" element={<Tools />} />
         <Route path="/tools/qr-generator" element={<QRGenerator />} />
         <Route path="/tools/resume-builder" element={<ResumeBuilder />} />
+         <Route
+    path="/tools/jpg-to-pdf"
+    element={<JpgToPdf />}
+  />
+
+  <Route
+    path="/tools/pdf-merge"
+    element={<PdfMerge />}
+  />
+
+  <Route
+    path="/tools/passport-photo"
+    element={<PassportPhoto />}
+  />
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+<Route path="/terms-conditions" element={<TermsConditions />} />
+<Route path="/refund-policy" element={<RefundPolicy />} />
+<Route path="/cancellation-policy" element={<CancellationPolicy />} />
         <Route path="*" element={<NotFound />} />
 
       </Routes>

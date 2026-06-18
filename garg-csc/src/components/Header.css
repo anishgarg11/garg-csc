@@ -25,12 +25,6 @@
   gap: 20px;
 }
 
-.logo {
-  width: 70px;
-  height: 70px;
-  object-fit: contain;
-}
-
 .logo-area {
   display: flex;
   align-items: center;
@@ -45,9 +39,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 28px;
   box-shadow: 0 4px 14px rgba(0,0,0,0.2);
   flex-shrink: 0;
+}
+
+.logo {
+  width: 70px;
+  height: 70px;
+  object-fit: contain;
 }
 
 .logo-text h1 {
@@ -64,53 +63,53 @@
   margin-top: 2px;
 }
 
-/* Desktop Navigation */
+/* Desktop / Tablet Navbar */
 .nav {
-  display: none;
-  position: absolute;
-  top: 100%;
-  right: 15px;
-  width: 240px;
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(0,0,0,.15);
-  padding: 10px;
-  flex-direction: column;
-  gap: 0; /* gap hata do */
-  z-index: 999;
-   
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  position: static;
+  width: auto;
+  background: transparent;
+  box-shadow: none;
+  padding: 0;
+  border-radius: 0;
+  flex-direction: row;
 }
 
 .nav-link {
-  display: block;
-  width: 100%;
-  padding: 12px;
-  box-sizing: border-box;
+  color: rgba(255,255,255,0.88);
   text-decoration: none;
+  padding: 9px 13px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  transition: 0.2s ease;
+  white-space: nowrap;
 }
 
 .nav-link:hover,
 .nav-link.active {
   background: rgba(255,255,255,0.15);
- 
+  color: white;
 }
 
 .nav-cta {
   background: rgb(45, 136, 45);
   color: white !important;
   text-decoration: none;
-  padding: 8px 14px;
+  padding: 9px 14px;
   border-radius: 8px;
   font-size: 13px;
-  font-weight: 600;
-  transition: all 0.2s;
+  font-weight: 700;
+  transition: 0.2s ease;
+  white-space: nowrap;
 }
 
 .nav-cta:hover {
   background: green;
 }
 
-/* Mobile Menu Button */
 .menu-btn {
   display: none;
   background: transparent;
@@ -120,10 +119,20 @@
   cursor: pointer;
 }
 
-/* Mobile Responsive */
+/* Mobile Only */
 @media (max-width: 768px) {
   .header-main {
     padding: 12px 20px;
+  }
+
+  .logo-icon {
+    width: 52px;
+    height: 52px;
+  }
+
+  .logo {
+    width: 58px;
+    height: 58px;
   }
 
   .logo-text h1 {
@@ -146,11 +155,12 @@
     width: 240px;
     background: white;
     border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0,0,0,.15);
+    box-shadow: 0 10px 30px rgba(0,0,0,.18);
     padding: 10px;
     flex-direction: column;
+    align-items: stretch;
     gap: 6px;
-    z-index: 999;
+    z-index: 9999;
   }
 
   .nav.nav-open {
@@ -163,6 +173,7 @@
     padding: 12px;
   }
 
+  .nav-link:hover,
   .nav-link.active {
     background: #eef4ff;
     color: #0b4f8a;

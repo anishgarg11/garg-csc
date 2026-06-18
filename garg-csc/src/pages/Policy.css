@@ -1,0 +1,140 @@
+.policy-page {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 60px 20px;
+  min-height: 80vh;
+}
+
+.policy-container {
+  background: #fff;
+  border-radius: 20px;
+  padding: 40px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e5e7eb;
+}
+
+.policy-page h1 {
+  font-size: 2.2rem;
+  color: #0b4f8a;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.policy-subtitle {
+  text-align: center;
+  color: #64748b;
+  margin-bottom: 35px;
+  font-size: 15px;
+}
+
+.policy-section {
+  margin-bottom: 30px;
+}
+
+.policy-section h2 {
+  font-size: 1.2rem;
+  color: #0b4f8a;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+.policy-section p {
+  color: #334155;
+  line-height: 1.8;
+  margin-bottom: 12px;
+  font-size: 15px;
+}
+
+.policy-section ul {
+  padding-left: 20px;
+}
+
+.policy-section li {
+  color: #334155;
+  line-height: 1.8;
+  margin-bottom: 8px;
+}
+
+.policy-highlight {
+  background: #eff6ff;
+  border-left: 4px solid #0b4f8a;
+  padding: 15px;
+  border-radius: 10px;
+  margin: 20px 0;
+}
+
+.policy-highlight strong {
+  color: #0b4f8a;
+}
+
+.policy-contact {
+  background: linear-gradient(
+    135deg,
+    rgba(11, 79, 138, 0.08),
+    rgba(255, 107, 0, 0.08)
+  );
+  border-radius: 12px;
+  padding: 18px;
+  margin-top: 25px;
+}
+
+.policy-contact p {
+  margin: 6px 0;
+}
+
+.policy-contact a {
+  color: #0b4f8a;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.policy-contact a:hover {
+  text-decoration: underline;
+}
+
+.policy-updated {
+  text-align: center;
+  margin-top: 30px;
+  color: #94a3b8;
+  font-size: 14px;
+  border-top: 1px solid #e2e8f0;
+  padding-top: 20px;
+}
+
+.policy-badge {
+  display: block;
+  width: fit-content;
+  margin: 0 auto 14px;
+  padding: 8px 16px;
+  background: #eff6ff;
+  color: #0b4f8a;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+/* Mobile */
+
+@media (max-width: 768px) {
+  .policy-page {
+    padding: 30px 15px;
+  }
+
+  .policy-container {
+    padding: 25px;
+  }
+
+  .policy-page h1 {
+    font-size: 1.8rem;
+  }
+
+  .policy-section h2 {
+    font-size: 1.1rem;
+  }
+
+  .policy-section p,
+  .policy-section li {
+    font-size: 14px;
+  }
+}

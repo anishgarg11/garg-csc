@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import './Footer.css'
 
 export default function Footer() {
@@ -15,7 +15,6 @@ export default function Footer() {
         <Link to="/about">About Us</Link>
         <Link to="/certificate">Certificate</Link>
         <Link to="/contact">Contact</Link>
-
         <a
           href="https://csc.gov.in"
           target="_blank"
@@ -23,6 +22,10 @@ export default function Footer() {
         >
           CSC India Portal
         </a>
+        <NavLink to="/privacy-policy">Privacy Policy</NavLink>
+        <NavLink to="/terms-conditions">Terms & Conditions</NavLink>
+        <NavLink to="/refund-policy">Refund Policy</NavLink>
+        <NavLink to="/cancellation-policy">Cancellation Policy</NavLink>
       </div>
 
       <div className="developer-credit">

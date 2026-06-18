@@ -1,19 +1,39 @@
-import {
-  getUsage,
-  increaseUsage,
-  isPaymentRequired,
-} from "./paymentUtils";
+import { useState } from "react";
 
-const TOOL_NAME = "passport_photo_downloads";
+export default function PassportPhotoMaker() {
+  const [photo, setPhoto] = useState(null);
 
-function handleDownload() {
-  if (isPaymentRequired(TOOL_NAME)) {
-    alert("Free limit completed. Please pay to continue.");
-    return;
-  }
+  const handlePhoto = (e) => {
+    const file = e.target.files[0];
 
-  // yahan passport photo download ka actual logic hoga
-  increaseUsage(TOOL_NAME);
+    if (file) {
+      setPhoto(URL.createObjectURL(file));
+    }
+  };
 
-  alert(`Download successful. Free downloads used: ${getUsage(TOOL_NAME)}/2`);
+  return (
+    <div className="tool-page">
+      <h1>📷 Passport Photo Maker</h1>
+
+      <input
+        type="file"
+        accept="image/*"
+        onChange={handlePhoto}
+      />
+
+      {photo && (
+        <div className="photo-preview-box">
+          <img
+            src={photo}
+            alt="passport"
+            className="passport-preview"
+          />
+        </div>
+      )}
+
+      <button>
+        Generate Passport Photo
+      </button>
+    </div>
+  );
 }

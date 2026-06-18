@@ -32,21 +32,35 @@ export default function Tools() {
   ];
 
   return (
-    <section className="tools-page">
-      <h1>Free CSC Tools</h1>
+      <section className="tools-page">
+  <div className="tools-header">
+    <span className="tools-badge">Digital Utility Tools</span>
 
-      <div className="tools-grid">
-        {tools.map((tool) => (
-          <Link
-            key={tool.title}
-            to={tool.path}
-            className="tool-card"
-          >
-            <span>{tool.icon}</span>
-            <h3>{tool.title}</h3>
-          </Link>
-        ))}
-      </div>
-    </section>
-  );
+    <h1>CSC Digital Tools</h1>
+
+    <p>
+      Professional tools for document creation, PDF management,
+      QR generation and photo processing.
+    </p>
+  </div>
+
+  <div className="tools-grid">
+    {tools.map((tool) => (
+      <Link
+        key={tool.title}
+        to={tool.path}
+        className="tool-card"
+      >
+        <div className="tool-icon">{tool.icon}</div>
+
+        <h3>{tool.title}</h3>
+
+        <span className="tool-open">
+          Open Tool →
+        </span>
+      </Link>
+    ))}
+  </div>
+</section>  
+  )
 }
