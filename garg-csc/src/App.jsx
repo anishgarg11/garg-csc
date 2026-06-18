@@ -1,10 +1,11 @@
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-
+import Tools from "./pages/Tools";
+import QRGenerator from "./tools/QRGenerator";
 import Header from './components/Header';
 import Footer from './components/Footer';
 import ChatWidget from './components/ChatWidget';
-
+import ResumeBuilder from "./tools/ResumeBuilder";
 import Home from './pages/Home';
 import Services from './pages/Services';
 import About from './pages/About';
@@ -61,7 +62,11 @@ export default function App() {
         <Route path="/about" element={<About />} />
         <Route path="/certificate" element={<Certificate />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/tools" element={<Tools />} />
+        <Route path="/tools/qr-generator" element={<QRGenerator />} />
+        <Route path="/tools/resume-builder" element={<ResumeBuilder />} />
         <Route path="*" element={<NotFound />} />
+
       </Routes>
 
       <Footer />
