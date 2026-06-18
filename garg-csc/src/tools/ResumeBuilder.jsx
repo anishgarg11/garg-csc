@@ -348,7 +348,7 @@ const removeEducation = (index) => {
     );
   };
 
-  const API_BASE_URL = "https://garg-csc-backend.onrender.com";
+  const API_BASE_URL = "https://garg-csc.onrender.com";
 
   const payAndUnlock = async () => {
 const res = await fetch(`${API_BASE_URL}/api/create-order`, {   
