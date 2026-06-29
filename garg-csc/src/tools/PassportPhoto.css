@@ -1,0 +1,451 @@
+.passport-editor-page {
+  height: 100vh;
+  background: #252525;
+  color: #e5e7eb;
+  overflow: hidden;
+  font-family: Inter, system-ui, Arial, sans-serif;
+}
+
+.photoshop-topbar {
+  height: 38px;
+  background: #3f3f3f;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 0 14px;
+  font-size: 14px;
+  border-bottom: 1px solid #2b2b2b;
+}
+
+.photoshop-topbar strong {
+  background: #0b4f8a;
+  color: white;
+  padding: 4px 7px;
+  border-radius: 5px;
+}
+
+.photoshop-options {
+  height: 48px;
+  background: #4b4b4b;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 0 14px;
+  border-bottom: 1px solid #2f2f2f;
+}
+
+.photoshop-options button,
+.right-properties button {
+  border: none;
+  background: #0b4f8a;
+  color: white;
+  padding: 9px 14px;
+  border-radius: 9px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.passport-editor-layout {
+  height: calc(100vh - 86px);
+  display: grid;
+  grid-template-columns: 54px minmax(0, 1fr) 360px;
+  overflow: hidden;
+}
+
+.left-toolbar {
+  background: #333;
+  border-right: 1px solid #222;
+  padding: 10px 7px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.left-toolbar button {
+  width: 38px;
+  height: 38px;
+  border: 1px solid #555;
+  background: #444;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.editor-center {
+  min-width: 0;
+  background: #202020;
+  overflow: auto;
+}
+
+.canvas-tabs {
+  height: 38px;
+  background: #3a3a3a;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  border-bottom: 1px solid #222;
+  font-weight: 700;
+}
+
+.ruler-horizontal {
+  height: 22px;
+  margin-left: 22px;
+  background: repeating-linear-gradient(
+    to right,
+    #333 0,
+    #333 9px,
+    #777 10px
+  );
+}
+
+.workspace-with-ruler {
+  display: grid;
+  grid-template-columns: 22px 1fr;
+}
+
+.ruler-vertical {
+  width: 22px;
+  background: repeating-linear-gradient(
+    to bottom,
+    #333 0,
+    #333 9px,
+    #777 10px
+  );
+}
+
+.crop-workspace {
+  position: relative;
+  height: 430px;
+  margin: 26px;
+  background: #111827;
+  border: 1px solid #444;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.upload-placeholder {
+  height: 100%;
+  display: grid;
+  place-items: center;
+  color: #cbd5e1;
+  font-size: 20px;
+  font-weight: 800;
+}
+
+.head-guide {
+  position: absolute;
+  top: 22%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 155px;
+  border: 2px dashed #22c55e;
+  border-radius: 50%;
+  z-index: 20;
+  pointer-events: none;
+}
+
+.head-guide span {
+  position: absolute;
+  top: -24px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #22c55e;
+  color: white;
+  padding: 3px 8px;
+  border-radius: 999px;
+  font-size: 11px;
+  white-space: nowrap;
+}
+
+.sheet-preview-panel {
+  margin: 26px;
+  background: #2f2f2f;
+  border: 1px solid #444;
+  border-radius: 14px;
+  padding: 18px;
+}
+
+.preview-title {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.preview-title h3 {
+  margin: 0;
+  color: white;
+}
+
+.preview-title p {
+  margin: 0;
+  color: #cbd5e1;
+  font-size: 13px;
+}
+
+.print-sheet-preview {
+  display: flex;
+  justify-content: center;
+  overflow: auto;
+  background: #1a1a1a;
+  border-radius: 12px;
+  padding: 24px;
+}
+
+.sheet-paper {
+  width: min(520px, 100%);
+  background: white;
+  padding: 18px;
+  display: grid;
+  gap: 8px;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.45);
+}
+
+.sheet-photo-box {
+  position: relative;
+  border: 1px solid #d1d5db;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  color: #64748b;
+  font-size: 12px;
+}
+
+.sheet-photo-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cut-mark::before,
+.cut-mark::after {
+  content: "";
+  position: absolute;
+  background: #111827;
+}
+
+.cut-mark::before {
+  width: 18px;
+  height: 1px;
+  top: 0;
+  left: 0;
+}
+
+.cut-mark::after {
+  width: 1px;
+  height: 18px;
+  top: 0;
+  left: 0;
+}
+
+.right-properties {
+  background: #4a4a4a;
+  border-left: 1px solid #2b2b2b;
+  overflow-y: auto;
+  padding: 12px;
+}
+
+.panel {
+  background: #555;
+  border: 1px solid #666;
+  border-radius: 12px;
+  padding: 14px;
+  margin-bottom: 12px;
+}
+
+.panel h3 {
+  margin: 0 0 14px;
+  color: white;
+  font-size: 16px;
+}
+
+.panel label {
+  display: block;
+  margin: 10px 0 6px;
+  color: #e5e7eb;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.panel input,
+.panel select {
+  width: 100%;
+  padding: 9px 10px;
+  border-radius: 8px;
+  border: 1px solid #777;
+  background: #3d3d3d;
+  color: white;
+}
+
+.panel input[type="color"] {
+  padding: 3px;
+  height: 38px;
+}
+
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.small-info,
+.quality-line {
+  font-size: 12px;
+  color: #e5e7eb;
+  background: #3d3d3d;
+  padding: 8px;
+  border-radius: 8px;
+  margin: 7px 0;
+}
+
+.quick-counts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.quick-counts button {
+  background: #374151;
+  padding: 7px 10px;
+}
+
+.check-row {
+  display: flex !important;
+  align-items: center;
+  gap: 8px;
+}
+
+.check-row input {
+  width: auto;
+}
+
+.download-panel button {
+  width: 100%;
+  margin-top: 9px;
+}
+
+.passport-print-only {
+  display: none;
+}
+
+/* PRINT ONLY PHOTO SHEET */
+@media print {
+  html,
+  body {
+    width: 210mm !important;
+    height: 297mm !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    background: white !important;
+  }
+
+  body * {
+    visibility: hidden !important;
+  }
+
+  .passport-print-only,
+  .passport-print-only * {
+    visibility: visible !important;
+  }
+
+  .passport-print-only {
+    display: block !important;
+    position: fixed !important;
+    left: 0 !important;
+    top: 0 !important;
+    width: 210mm !important;
+    height: 297mm !important;
+    overflow: hidden !important;
+    background: white !important;
+  }
+
+  .preview-photo-img,
+.print-photo-box img,
+.sheet-photo-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+  .print-sheet-paper {
+    width: 210mm !important;
+    height: 297mm !important;
+    display: grid !important;
+    grid-template-columns: repeat(5, 34mm) !important;
+    grid-auto-rows: 45mm !important;
+    /* gap: 3mm !important; */
+    column-gap: 3mm !important;
+    row-gap: 3mm !important;
+    padding: 5mm !important;
+    margin-left: 20px !important;
+    background: white !important;
+    box-sizing: border-box !important;
+    align-content: start !important;
+    justify-content: start !important;
+    overflow: hidden !important;
+  }
+
+  .print-photo-box {
+    width: 34mm !important;
+    height: 45mm !important;
+    overflow: hidden !important;
+    border: 3px solid #000000 !important;
+    box-sizing: border-box !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  .print-photo-box img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    display: block !important;
+  }
+
+  @page {
+    size: A4 portrait;
+    margin: 0;
+  }
+}
+
+@media (max-width: 1100px) {
+  .passport-editor-page {
+    height: auto;
+    overflow: visible;
+  }
+
+  .passport-editor-layout {
+    height: auto;
+    grid-template-columns: 1fr;
+  }
+
+  .left-toolbar {
+    flex-direction: row;
+    overflow-x: auto;
+  }
+
+  .right-properties {
+    overflow: visible;
+  }
+
+  .crop-workspace {
+    height: 420px;
+  }
+}
+
+@media (max-width: 600px) {
+  .two-col {
+    grid-template-columns: 1fr;
+  }
+
+  .photoshop-topbar {
+    gap: 10px;
+    font-size: 12px;
+    overflow-x: auto;
+  }
+}

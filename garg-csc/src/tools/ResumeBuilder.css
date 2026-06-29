@@ -1,15 +1,20 @@
 .resume-page {
   --resume-theme: #0b4f8a;
-  min-height: 100vh;
-  padding: 5px;
+  height: calc(100vh - 0px);
+  padding: 10px;
+  overflow: hidden;
   background:
     radial-gradient(circle at top left, rgba(255, 107, 0, 0.12), transparent 35%),
     linear-gradient(135deg, #eef4ff 0%, #f8fafc 45%, #fff7ed 100%);
 }
 
+.resume-page * {
+  box-sizing: border-box;
+}
+
 .resume-title {
   text-align: center;
-  margin-bottom: 10px;
+  margin-bottom: 14px;
 }
 
 .resume-title h1 {
@@ -18,17 +23,21 @@
   margin-bottom: 8px;
 }
 
+/* Main Layout */
 .resume-layout.right {
-  max-width: 1450px;
+  width: 100%;
+  height: calc(100vh - 155px);
+  max-width: 100%;
   margin: auto;
   display: grid;
-  grid-template-columns: 430px 1fr;
-  gap: 32px;
-  align-items: flex-start;
+  grid-template-columns: 330px minmax(520px, 1fr) 250px;
+  gap: 16px;
+  align-items: stretch;
+  overflow: hidden;
 }
 
 .resume-layout.top {
-  max-width: 1100px;
+  max-width: 1200px;
   margin: auto;
   display: flex;
   flex-direction: column-reverse;
@@ -36,22 +45,30 @@
 }
 
 .resume-layout.bottom {
-  max-width: 1100px;
+  max-width: 1200px;
   margin: auto;
   display: flex;
   flex-direction: column;
   gap: 32px;
 }
 
+/* Form */
 .resume-form {
+  width: 100%;
+  height: 100%;
+  max-height: none;
+  overflow-y: auto;
+  overflow-x: hidden;
+  position: static;
+  align-self: stretch;
+
   background: #ffffff;
   border: 1px solid #e2e8f0;
   border-radius: 22px;
-  padding: 28px;
+  padding: 22px;
   box-shadow: 0 18px 45px rgba(15, 23, 42, 0.1);
-  position: sticky;
-  top: 120px;
 }
+
 
 .resume-form h2,
 .education-builder h3,
@@ -72,7 +89,7 @@
 .resume-form textarea,
 .resume-form select {
   width: 100%;
-  padding: 13px 14px;
+  padding: 12px 13px;
   border: 1px solid #cbd5e1;
   border-radius: 12px;
   font-size: 14px;
@@ -93,6 +110,40 @@
   resize: vertical;
 }
 
+/* Tabs */
+.sticky-form-tabs {
+  position: static;
+  background: #ffffff;
+  padding: 10px 0 14px;
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  margin-bottom: 18px;
+  border-bottom: 1px solid #e2e8f0;
+  scrollbar-width: thin;
+}
+
+.tab-btn {
+  flex: 0 0 auto;
+  border: 1px solid #dbe4f0;
+  background: #f8fafc;
+  color: #334155;
+  padding: 9px 12px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-weight: 700;
+  white-space: nowrap;
+  font-size: 13px;
+}
+
+.tab-btn.active {
+  background: var(--resume-theme);
+  color: white;
+  border-color: var(--resume-theme);
+}
+
+/* Buttons */
 .template-options {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -138,6 +189,7 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
+/* Photo */
 .photo-preview-box {
   margin-top: 15px;
   text-align: center;
@@ -163,6 +215,7 @@
   flex-shrink: 0;
 }
 
+/* Add / Remove */
 .remove-photo-btn,
 .remove-edu-btn,
 .remove-item-btn {
@@ -195,6 +248,7 @@
   color: white;
 }
 
+/* Download */
 .download-resume-btn {
   width: 100%;
   margin-top: 24px;
@@ -219,17 +273,74 @@
   font-size: 13px;
 }
 
+/* Accordions */
+.form-accordion {
+  margin-top: 16px;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.accordion-header {
+  width: 100%;
+  border: none;
+  background: white;
+  padding: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 700;
+  color: var(--resume-theme);
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.accordion-body {
+  padding: 16px;
+  background: #f8fafc;
+  border-top: 1px solid #e2e8f0;
+}
+
+.education-builder,
+.builder-box {
+  margin-top: 22px;
+  padding: 16px;
+  background: #f8fafc;
+  border: 1px solid #dbe4f0;
+  border-radius: 14px;
+}
+
+.education-form-card,
+.builder-card {
+  background: white;
+  border: 1px solid #e2e8f0;
+  padding: 14px;
+  border-radius: 12px;
+  margin-bottom: 14px;
+}
+
+.education-form-card input,
+.builder-card input,
+.builder-card textarea {
+  margin-bottom: 10px;
+}
+
+/* Preview */
 .resume-preview-wrap {
-  overflow-x: auto;
+   width: 100%;
+  height: 100%;
+  min-width: 0;
+  overflow: auto;
   padding-bottom: 20px;
 }
 
 .resume-preview {
-  width: 794px;
+  width: 100%;
+  max-width: 794px;
   min-height: 1123px;
-  background: white;
   margin: auto;
-  padding: 46px;
+  background: white;
+  padding: 42px;
   color: #1e293b;
   box-shadow: 0 20px 50px rgba(15, 23, 42, 0.16);
   border-radius: 6px;
@@ -298,6 +409,7 @@
   padding-top: 12px;
 }
 
+/* Templates */
 .modern-template {
   border-top: 12px solid var(--resume-theme);
 }
@@ -357,13 +469,15 @@
   color: #444444;
 }
 
+/* Professional Score */
 .outside-score {
   background: #eef4ff;
   border: 1px solid #dbeafe;
   border-radius: 12px;
   padding: 14px;
   margin: 0 auto 18px;
-  width: 794px;
+  width: 100%;
+  max-width: 794px;
 }
 
 .outside-score span {
@@ -392,6 +506,7 @@
   border-radius: 999px;
 }
 
+/* Resume Items */
 .skills-chip-box {
   display: flex;
   flex-wrap: wrap;
@@ -406,45 +521,6 @@
   border-radius: 999px;
   font-size: 13px;
   font-weight: 700;
-}
-
-.project-card-box {
-  display: grid;
-  gap: 10px;
-}
-
-.project-mini-card {
-  background: #f8fafc;
-  border-left: 4px solid var(--resume-theme);
-  padding: 10px 12px;
-  border-radius: 8px;
-  font-size: 14px;
-  font-weight: 600;
-}
-
-.education-builder,
-.builder-box,
-.section-order-box {
-  margin-top: 22px;
-  padding: 16px;
-  background: #f8fafc;
-  border: 1px solid #dbe4f0;
-  border-radius: 14px;
-}
-
-.education-form-card,
-.builder-card {
-  background: white;
-  border: 1px solid #e2e8f0;
-  padding: 14px;
-  border-radius: 12px;
-  margin-bottom: 14px;
-}
-
-.education-form-card input,
-.builder-card input,
-.builder-card textarea {
-  margin-bottom: 10px;
 }
 
 .education-preview-card,
@@ -480,13 +556,32 @@
   margin: 4px 0;
 }
 
+/* Section Order */
+.section-order-panel {
+  width: 100%;
+  height: 100%;
+  max-height: none;
+  overflow-y: auto;
+  overflow-x: hidden;
+  position: static;
+  align-self: stretch;
+}
+.section-order-box {
+ margin-top: 0;
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 18px;
+  padding: 16px;
+  box-shadow: 0 12px 35px rgba(15, 23, 42, 0.08);
+}
+
 .section-order-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: white;
+  background: #f8fafc;
   border: 1px solid #e2e8f0;
-  padding: 10px 12px;
+  padding: 10px;
   border-radius: 10px;
   margin-bottom: 8px;
 }
@@ -494,15 +589,16 @@
 .section-order-item span {
   font-weight: 700;
   color: #334155;
+  font-size: 14px;
 }
 
 .section-order-item button {
   border: none;
   background: var(--resume-theme);
   color: white;
-  padding: 6px 10px;
+  padding: 6px 9px;
   border-radius: 7px;
-  margin-left: 6px;
+  margin-left: 5px;
   cursor: pointer;
 }
 
@@ -511,74 +607,46 @@
   cursor: not-allowed;
 }
 
-.form-accordion {
-  margin-top: 16px;
-  border: 1px solid #e2e8f0;
-  border-radius: 14px;
-  overflow: hidden;
+/* 3 column compact mode */
+@media (min-width: 1201px) {
+  .resume-layout.right {
+    grid-template-columns: 330px minmax(520px, 1fr) 250px;
+  }
 }
 
-.accordion-header {
-  width: 100%;
-  border: none;
-  background: white;
-  padding: 16px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-weight: 700;
-  color: var(--resume-theme);
-  cursor: pointer;
-  font-size: 15px;
+/* 2 column mode */
+@media (max-width: 1200px) {
+  .resume-layout.right {
+    grid-template-columns: 330px minmax(0, 1fr);
+  }
+
+  .section-order-panel {
+    grid-column: 1 / -1;
+    position: static;
+  }
 }
 
-.accordion-body {
-  padding: 16px;
-  background: #f8fafc;
-  border-top: 1px solid #e2e8f0;
-}
+/* Mobile */
+@media (max-width: 900px) {
+  .resume-page {
+    height: auto;
+    overflow: visible;
+  }
 
-.sticky-form-tabs {
-  position: sticky;
-  top: 0;
-  z-index: 20;
-  background: white;
-  padding: 10px 0;
-  display: flex;
-  gap: 8px;
-  overflow-x: auto;
-  margin-bottom: 15px;
-  border-bottom: 1px solid #e2e8f0;
-}
-
-.tab-btn {
-  border: 1px solid #dbe4f0;
-  background: #f8fafc;
-  color: #334155;
-  padding: 9px 12px;
-  border-radius: 999px;
-  cursor: pointer;
-  font-weight: 700;
-  white-space: nowrap;
-  font-size: 13px;
-}
-
-.tab-btn.active {
-  background: var(--resume-theme);
-  color: white;
-  border-color: var(--resume-theme);
-}
-
-@media (max-width: 1100px) {
   .resume-layout.right,
   .resume-layout.top,
   .resume-layout.bottom {
+    height: auto;
     display: flex;
     flex-direction: column;
+    overflow: visible;
   }
 
-  .resume-form {
-    position: static;
+  .resume-form,
+  .resume-preview-wrap,
+  .section-order-panel {
+    height: auto;
+    overflow: visible;
   }
 }
 

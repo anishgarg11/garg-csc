@@ -14,12 +14,12 @@ import Services from './pages/Services';
 import About from './pages/About';
 import Certificate from './pages/Certificate';
 import Contact from './pages/Contact';
+import ScrollToTop from "./components/ScrollToTop";
 import ServiceDetails from './pages/ServiceDetails';
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsConditions from "./pages/TermsConditions";
 import RefundPolicy from "./pages/RefundPolicy";
 import CancellationPolicy from "./pages/CancellationPolicy";
-import ServiceCharges from "./pages/ServiceCharges"
 import NotFound from './pages/NotFound';
 
 import Loader from './components/Loader';
@@ -58,6 +58,7 @@ export default function App() {
 
   return (
     <>
+     <ScrollToTop />
       <Analytics />
 
       <div className="tricolor-bar" />
@@ -73,15 +74,12 @@ export default function App() {
         <Route path="/tools" element={<Tools />} />
         <Route path="/tools/qr-generator" element={<QRGenerator />} />
         <Route path="/tools/resume-builder" element={<ResumeBuilder />} />
-         <Route
+        <Route path="/tools/pdf-merge" element={<PdfMerge/>}/>
+        <Route
     path="/tools/jpg-to-pdf"
     element={<JpgToPdf />}
   />
 
-  <Route
-    path="/tools/pdf-merge"
-    element={<PdfMerge />}
-  />
 
   <Route
     path="/tools/passport-photo"
@@ -91,13 +89,12 @@ export default function App() {
 <Route path="/terms-conditions" element={<TermsConditions />} />
 <Route path="/refund-policy" element={<RefundPolicy />} />
 <Route path="/cancellation-policy" element={<CancellationPolicy />} />
-<Route path="/service-charges" element={<ServiceCharges />} />
         <Route path="*" element={<NotFound />} />
 
       </Routes>
 
       <Footer />
-      <ChatWidget />
+      {/* <ChatWidget /> */}
 
       <a
         href="https://wa.me/917217687044"

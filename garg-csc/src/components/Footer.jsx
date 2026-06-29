@@ -22,7 +22,7 @@ export default function Footer() {
         >
           CSC India Portal
         </a>
-        <Link to="/service-charges">
+        <Link to="/tools">
   Service Charges
 </Link>
         <NavLink to="/privacy-policy">Privacy Policy</NavLink>

@@ -6,8 +6,6 @@ export default function ServiceCharges() {
     { service: "JPG to PDF", price: "₹20" },
     { service: "PDF Merge", price: "₹20" },
     { service: "QR Code Generator", price: "₹20" },
-    { service: "PAN Card Assistance", price: "As per applicable fee" },
-    { service: "Aadhaar Update Assistance", price: "As per UIDAI norms" },
   ];
 
   return (
@@ -86,10 +84,8 @@ export default function ServiceCharges() {
     <div className="charges-note">
       <h3>Important Information</h3>
       <p>
-        Charges for Government services such as Aadhaar, PAN Card,
-        Passport, Certificates, Banking, Insurance and other CSC
-        services may vary according to applicable Government fees,
-        department charges and service requirements.
+       CSC services are provided offline at our center.
+Online payments are accepted only for digital tools available on this website.
       </p>
     </div>
 

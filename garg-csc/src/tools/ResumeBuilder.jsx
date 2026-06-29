@@ -12,7 +12,6 @@ import {
 
 import "./ResumeBuilder.css";
 
-
 const TOOL_NAME = "resume_builder_downloads";
 
 const templates = [
@@ -52,115 +51,90 @@ export default function ResumeBuilder() {
     languages: "",
   });
 
-const formTabs = [
-  { id: "personal", label: "👤 Personal" },
-  { id: "education", label: "🎓 Education" },
-  { id: "experience", label: "💼 Experience" },
-  { id: "projects", label: "🚀 Projects" },
-  { id: "order", label: "↕️ Order" },
-];
+  const formTabs = [
+    { id: "personal", label: "👤 Personal" },
+    { id: "education", label: "🎓 Education" },
+    { id: "experience", label: "💼 Experience" },
+    { id: "projects", label: "🚀 Projects" },
+  ];
 
   const [sectionOrder, setSectionOrder] = useState([
-  "summary",
-  "skills",
-  "experience",
-  "projects",
-  "education",
-  "certifications",
-  "languages",
-]);
+    "summary",
+    "skills",
+    "experience",
+    "projects",
+    "education",
+    "certifications",
+    "languages",
+  ]);
 
   const [educationList, setEducationList] = useState([
-  {
-    degree: "",
-    institute: "",
-    year: "",
-    cgpa: "",
-  },
-]);
+    {
+      degree: "",
+      institute: "",
+      year: "",
+      cgpa: "",
+    },
+  ]);
 
+  const [experienceList, setExperienceList] = useState([
+    {
+      company: "",
+      role: "",
+      duration: "",
+      description: "",
+    },
+  ]);
 
-const [experienceList, setExperienceList] = useState([
-  {
-    company: "",
-    role: "",
-    duration: "",
-    description: "",
-  },
-]);
-
-
-const [projectList, setProjectList] = useState([
-  {
-    name: "",
-    tech: "",
-    live: "",
-    github: "",
-    description: "",
-  },
-]);
-
-
+  const [projectList, setProjectList] = useState([
+    {
+      name: "",
+      tech: "",
+      live: "",
+      github: "",
+      description: "",
+    },
+  ]);
 
   const skillsArray = form.skills
     .split(",")
     .map((skill) => skill.trim())
     .filter(Boolean);
 
-//   const projectsArray = form.projects
-//     .split(",")
-//     .map((project) => project.trim())
-//     .filter(Boolean);
-
   const completedFields = Object.values(form).filter(
     (value) => value.trim() !== "" && value.trim() !== "+91"
   ).length;
 
   const extraFields =
-  educationList.filter(
-    (e) => e.degree || e.institute || e.year || e.cgpa
-  ).length +
-  experienceList.filter(
-    (e) => e.company || e.role || e.duration || e.description
-  ).length +
-  projectList.filter(
-    (p) => p.name || p.tech || p.live || p.github || p.description
-  ).length;
+    educationList.filter((e) => e.degree || e.institute || e.year || e.cgpa)
+      .length +
+    experienceList.filter(
+      (e) => e.company || e.role || e.duration || e.description
+    ).length +
+    projectList.filter(
+      (p) => p.name || p.tech || p.live || p.github || p.description
+    ).length;
 
-const completionPercent = Math.min(
-  100,
-  Math.round(
-    ((completedFields + extraFields) /
-      (Object.keys(form).length + 3)) *
-      100
-  )
-);
-
-const toTitleCase = (str) =>
-  str.replace(
-    /\b\w/g,
-    (char) => char.toUpperCase()
+  const completionPercent = Math.min(
+    100,
+    Math.round(
+      ((completedFields + extraFields) / (Object.keys(form).length + 3)) * 100
+    )
   );
 
+  const toTitleCase = (str) =>
+    str.replace(/\b\w/g, (char) => char.toUpperCase());
+
   const handleChange = (e) => {
-  const { name, value } = e.target;
+    const { name, value } = e.target;
 
-  const autoCapitalizeFields = [
-    "name",
-    "role",
-    "address",
-    "degree",
-    "institute",
-    "company",
-  ];
+    const autoCapitalizeFields = ["name", "role", "address"];
 
-  setForm({
-    ...form,
-    [name]: autoCapitalizeFields.includes(name)
-      ? toTitleCase(value)
-      : value,
-  });
-};
+    setForm({
+      ...form,
+      [name]: autoCapitalizeFields.includes(name) ? toTitleCase(value) : value,
+    });
+  };
 
   const handlePhoto = (e) => {
     const file = e.target.files[0];
@@ -170,149 +144,209 @@ const toTitleCase = (str) =>
     }
   };
 
+  const moveSection = (index, direction) => {
+    const updated = [...sectionOrder];
 
-const moveSection = (index, direction) => {
-  const updated = [...sectionOrder];
+    if (direction === "up" && index > 0) {
+      [updated[index], updated[index - 1]] = [
+        updated[index - 1],
+        updated[index],
+      ];
+    }
 
-  if (direction === "up" && index > 0) {
-    [updated[index], updated[index - 1]] = [updated[index - 1], updated[index]];
-  }
+    if (direction === "down" && index < updated.length - 1) {
+      [updated[index], updated[index + 1]] = [
+        updated[index + 1],
+        updated[index],
+      ];
+    }
 
-  if (direction === "down" && index < updated.length - 1) {
-    [updated[index], updated[index + 1]] = [updated[index + 1], updated[index]];
-  }
-
-  setSectionOrder(updated);
-};
-
-
-
-const handleExperienceChange = (index, field, value) => {
-  const updated = [...experienceList];
-  updated[index][field] = value;
-  setExperienceList(updated);
-};
-
-const addExperience = () => {
-  setExperienceList([
-    ...experienceList,
-    {
-      company: "",
-      role: "",
-      duration: "",
-      description: "",
-    },
-  ]);
-};
-
-const removeExperience = (index) => {
-  setExperienceList(experienceList.filter((_, i) => i !== index));
-};
-
-
-const handleProjectChange = (index, field, value) => {
-  const updated = [...projectList];
-  updated[index][field] = value;
-  setProjectList(updated);
-};
-
-const addProject = () => {
-  setProjectList([
-    ...projectList,
-    {
-      name: "",
-      tech: "",
-      live: "",
-      github: "",
-      description: "",
-    },
-  ]);
-};
-
-const removeProject = (index) => {
-  setProjectList(projectList.filter((_, i) => i !== index));
-};
-
-
+    setSectionOrder(updated);
+  };
 
   const handleEducationChange = (index, field, value) => {
-  const updatedEducation = [...educationList];
-  updatedEducation[index][field] = value;
-  setEducationList(updatedEducation);
-};
+    const updated = [...educationList];
+    updated[index][field] = value;
+    setEducationList(updated);
+  };
 
-const addEducation = () => {
-  setEducationList([
-    ...educationList,
-    {
-      degree: "",
-      institute: "",
-      year: "",
-      cgpa: "",
-    },
-  ]);
-};
+  const addEducation = () => {
+    setEducationList([
+      ...educationList,
+      {
+        degree: "",
+        institute: "",
+        year: "",
+        cgpa: "",
+      },
+    ]);
+  };
 
-const removeEducation = (index) => {
-  const updatedEducation = educationList.filter((_, i) => i !== index);
-  setEducationList(updatedEducation);
-};
+  const removeEducation = (index) => {
+    setEducationList(educationList.filter((_, i) => i !== index));
+  };
 
+  const handleExperienceChange = (index, field, value) => {
+    const updated = [...experienceList];
+    updated[index][field] = value;
+    setExperienceList(updated);
+  };
+
+  const addExperience = () => {
+    setExperienceList([
+      ...experienceList,
+      {
+        company: "",
+        role: "",
+        duration: "",
+        description: "",
+      },
+    ]);
+  };
+
+  const removeExperience = (index) => {
+    setExperienceList(experienceList.filter((_, i) => i !== index));
+  };
+
+  const handleProjectChange = (index, field, value) => {
+    const updated = [...projectList];
+    updated[index][field] = value;
+    setProjectList(updated);
+  };
+
+  const addProject = () => {
+    setProjectList([
+      ...projectList,
+      {
+        name: "",
+        tech: "",
+        live: "",
+        github: "",
+        description: "",
+      },
+    ]);
+  };
+
+  const removeProject = (index) => {
+    setProjectList(projectList.filter((_, i) => i !== index));
+  };
+
+  const API_BASE_URL = "https://garg-csc.onrender.com";
+
+  const payAndUnlock = async () => {
+    try {
+      const res = await fetch(`${API_BASE_URL}/api/create-order`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ amount: 10 }),
+      });
+
+      const data = await res.json();
+
+      if (!data.success || !data.order || !data.key) {
+        alert("Payment order creation failed.");
+        return;
+      }
+
+      const options = {
+        key: data.key,
+        amount: data.order.amount,
+        currency: "INR",
+        name: "Garg CSC",
+        description: "Resume Builder Paid Download",
+        order_id: data.order.id,
+
+        handler: async function (response) {
+          const verifyRes = await fetch(`${API_BASE_URL}/api/verify-payment`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(response),
+          });
+
+          const verifyData = await verifyRes.json();
+
+          if (verifyData.success) {
+            unlockPaidDownload(TOOL_NAME);
+            alert("Payment successful. Resume download unlocked.");
+          } else {
+            alert("Payment verification failed.");
+          }
+        },
+
+        prefill: {
+          name: form.name || "Customer",
+          email: form.email || "test@example.com",
+          contact: form.phone.replace("+91", "").trim(),
+        },
+
+        theme: {
+          color: themeColor,
+        },
+      };
+
+      const razor = new window.Razorpay(options);
+      razor.open();
+    } catch (error) {
+      console.log("Payment Error:", error);
+      alert("Payment failed. Please try again.");
+    }
+  };
 
   const downloadPDF = async () => {
     const phoneDigits = form.phone.replace("+91", "").trim();
 
     if (!/^[6-9]\d{9}$/.test(phoneDigits)) {
-  alert("Please enter a valid 10 digit Indian mobile number");
-  return;
-}
+      alert("Please enter a valid 10 digit Indian mobile number");
+      return;
+    }
 
     if (isPaymentRequired(TOOL_NAME) && !isPaidUnlocked(TOOL_NAME)) {
-  alert("Free download limit completed. Please pay to continue.");
-  await payAndUnlock();
-  return;
-}
+      alert("Free download limit completed. Please pay to continue.");
+      await payAndUnlock();
+      return;
+    }
 
     const element = resumeRef.current;
 
     const canvas = await html2canvas(element, {
-  scale: 2,
-  useCORS: true,
-  backgroundColor: "#ffffff",
+      scale: 2,
+      useCORS: true,
+      backgroundColor: "#ffffff",
 
-  onclone: (clonedDoc) => {
-    clonedDoc.querySelectorAll("*").forEach((el) => {
-      const computed = clonedDoc.defaultView.getComputedStyle(el);
+      onclone: (clonedDoc) => {
+        clonedDoc.querySelectorAll("*").forEach((el) => {
+          const computed = clonedDoc.defaultView.getComputedStyle(el);
 
-      const safeColor = "#1e293b";
-      const safeBg = "#ffffff";
+          if (
+            computed.color.includes("color(") ||
+            computed.color.includes("oklch") ||
+            computed.color.includes("lab(")
+          ) {
+            el.style.color = "#1e293b";
+          }
 
-      if (
-        computed.color.includes("color(") ||
-        computed.color.includes("oklch") ||
-        computed.color.includes("lab(")
-      ) {
-        el.style.color = safeColor;
-      }
+          if (
+            computed.backgroundColor.includes("color(") ||
+            computed.backgroundColor.includes("oklch") ||
+            computed.backgroundColor.includes("lab(")
+          ) {
+            el.style.backgroundColor = "#ffffff";
+          }
 
-      if (
-        computed.backgroundColor.includes("color(") ||
-        computed.backgroundColor.includes("oklch") ||
-        computed.backgroundColor.includes("lab(")
-      ) {
-        el.style.backgroundColor = safeBg;
-      }
-
-      if (
-        computed.borderColor.includes("color(") ||
-        computed.borderColor.includes("oklch") ||
-        computed.borderColor.includes("lab(")
-      ) {
-        el.style.borderColor = "#e2e8f0";
-      }
+          if (
+            computed.borderColor.includes("color(") ||
+            computed.borderColor.includes("oklch") ||
+            computed.borderColor.includes("lab(")
+          ) {
+            el.style.borderColor = "#e2e8f0";
+          }
+        });
+      },
     });
-  },
-});
 
     const imgData = canvas.toDataURL("image/png");
 
@@ -348,89 +382,28 @@ const removeEducation = (index) => {
     );
   };
 
-  const API_BASE_URL = "https://garg-csc.onrender.com";
-
-  const payAndUnlock = async () => {
-const res = await fetch(`${API_BASE_URL}/api/create-order`, {   
-   method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ amount: 10 }),
-  });
-
-  const data = await res.json();
-console.log("Order Response: ", data)
-
-  const options = {
-    key: data.key,
-    amount: data.order.amount,
-    currency: "INR",
-    name: "Garg CSC",
-    description: "Resume Builder Paid Download",
-    order_id: data.order.id,
-
-    handler: async function (response) {
-const verifyRes = await fetch(`${API_BASE_URL}/api/verify-payment`, {
-          method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(response),
-      });
-
-      const verifyData = await verifyRes.json();
-
-      if (verifyData.success) {
-        unlockPaidDownload(TOOL_NAME);
-        alert("Payment successful. Resume download unlocked.");
-      } else {
-        alert("Payment verification failed.");
-      }
-    },
-
-    prefill: {
-      name: form.name || "Customer",
-      email: form.email || "test@example.com",
-      contact: form.phone.replace("+91", "").trim(),
-    },
-
-    theme: {
-      color: themeColor,
-    },
-  };
-
-  const razor = new window.Razorpay(options);
-  razor.open();
-};
-
-
-
   return (
-<section
-  className="resume-page"
-  style={{ "--resume-theme": themeColor }}
->
+    <section className="resume-page" style={{ "--resume-theme": themeColor }}>
       <div className="resume-title">
         <h1>📄 Resume Builder</h1>
-        {/* <p>Create modern resumes for normal jobs and professional roles.</p> */}
       </div>
 
       <div className={`resume-layout ${previewPosition}`}>
         <div className="resume-form">
           <h2>Resume Details</h2>
+
           <div className="sticky-form-tabs">
-  {formTabs.map((tab) => (
-    <button
-      key={tab.id}
-      type="button"
-      className={activeSection === tab.id ? "tab-btn active" : "tab-btn"}
-      onClick={() => setActiveSection(tab.id)}
-    >
-      {tab.label}
-    </button>
-  ))}
-</div>
+            {formTabs.map((tab) => (
+              <button
+                key={tab.id}
+                type="button"
+                className={activeSection === tab.id ? "tab-btn active" : "tab-btn"}
+                onClick={() => setActiveSection(tab.id)}
+              >
+                {tab.label}
+              </button>
+            ))}
+          </div>
 
           <label>Resume Template</label>
           <div className="template-options">
@@ -462,27 +435,22 @@ const verifyRes = await fetch(`${API_BASE_URL}/api/verify-payment`, {
             ))}
           </div>
 
-    <label>Theme Color</label>
-
-<div className="color-options">
-  {[
-    "#0b4f8a",
-    "#ff6b00",
-    "#16a34a",
-    "#7c3aed",
-    "#111827",
-  ].map((color) => (
-    <button
-      key={color}
-      type="button"
-      className="color-btn"
-      style={{ backgroundColor: color }}
-      onClick={() => setThemeColor(color)}
-    >
-      {themeColor === color ? "✓" : ""}
-    </button>
-  ))}
-</div>
+          <label>Theme Color</label>
+          <div className="color-options">
+            {["#0b4f8a", "#ff6b00", "#16a34a", "#7c3aed", "#111827"].map(
+              (color) => (
+                <button
+                  key={color}
+                  type="button"
+                  className="color-btn"
+                  style={{ backgroundColor: color }}
+                  onClick={() => setThemeColor(color)}
+                >
+                  {themeColor === color ? "✓" : ""}
+                </button>
+              )
+            )}
+          </div>
 
           <label>Profile Photo</label>
           <input
@@ -512,300 +480,257 @@ const verifyRes = await fetch(`${API_BASE_URL}/api/verify-payment`, {
             </div>
           )}
 
+          <FormAccordion
+            title="👤 Personal Details"
+            sectionId="personal"
+            activeSection={activeSection}
+            setActiveSection={setActiveSection}
+          >
+            {Object.keys(form).map((key) => (
+              <div key={key}>
+                <label>{key.charAt(0).toUpperCase() + key.slice(1)}</label>
 
-<FormAccordion
-  title="👤 Personal Details"
-  sectionId="personal"
-  activeSection={activeSection}
-  setActiveSection={setActiveSection}
->
-          {Object.keys(form).map((key) => (
-            <div key={key}>
-              <label>{key.charAt(0).toUpperCase() + key.slice(1)}</label>
+                {["summary", "skills", "certifications", "languages"].includes(
+                  key
+                ) ? (
+                  <textarea
+                    name={key}
+                    value={form[key]}
+                    onChange={handleChange}
+                  />
+                ) : key === "phone" ? (
+                  <input
+                    name="phone"
+                    value={form.phone}
+                    onChange={(e) => {
+                      let digits = e.target.value.replace(/\D/g, "");
 
-              {[
-                "summary",
-                "skills",
-                "certifications",
-                "languages"
-              ].includes(key) ? (
-                <textarea
-                  name={key}
-                  value={form[key]}
-                  onChange={handleChange}
-                />
-              ) : key === "phone" ? (
-                <input
-                  name="phone"
-                  value={form.phone}
-                  onChange={(e) => {
-                    let digits = e.target.value.replace(/\D/g, "");
+                      if (digits.startsWith("91")) {
+                        digits = digits.slice(2);
+                      }
 
-                    if (digits.startsWith("91")) {
-                      digits = digits.slice(2);
-                    }
+                      digits = digits.slice(0, 10);
 
-                    digits = digits.slice(0, 10);
-
-                    setForm({
-                      ...form,
-                      phone: `+91 ${digits}`,
-                    });
-                  }}
-                  placeholder="+91 9876543210"
-                />
-              ) : (
-                <input
-                  name={key}
-                  value={form[key]}
-                  onChange={handleChange}
-                />
-              )}
-            </div>
-          ))}
+                      setForm({
+                        ...form,
+                        phone: `+91 ${digits}`,
+                      });
+                    }}
+                    placeholder="+91 9876543210"
+                  />
+                ) : (
+                  <input
+                    name={key}
+                    value={form[key]}
+                    onChange={handleChange}
+                  />
+                )}
+              </div>
+            ))}
           </FormAccordion>
 
+          <FormAccordion
+            title="🎓 Education"
+            sectionId="education"
+            activeSection={activeSection}
+            setActiveSection={setActiveSection}
+          >
+            <div className="education-builder">
+              <h3>Education Details</h3>
 
-<FormAccordion
-  title="🎓 Education"
-  sectionId="education"
-  activeSection={activeSection}
-  setActiveSection={setActiveSection}
->
-          <div className="education-builder">
-  <h3>Education Details</h3>
+              {educationList.map((edu, index) => (
+                <div key={index} className="education-form-card">
+                  <input
+                    type="text"
+                    placeholder="Degree / Course"
+                    value={edu.degree}
+                    onChange={(e) =>
+                      handleEducationChange(index, "degree", e.target.value)
+                    }
+                  />
 
-  {educationList.map((edu, index) => (
-    <div key={index} className="education-form-card">
-      <input
-        type="text"
-        placeholder="Degree / Course"
-        value={edu.degree}
-        onChange={(e) =>
-          handleEducationChange(index, "degree", e.target.value)
-        }
-      />
+                  <input
+                    type="text"
+                    placeholder="School / College / University"
+                    value={edu.institute}
+                    onChange={(e) =>
+                      handleEducationChange(index, "institute", e.target.value)
+                    }
+                  />
 
-      <input
-        type="text"
-        placeholder="School / College / University"
-        value={edu.institute}
-        onChange={(e) =>
-          handleEducationChange(index, "institute", e.target.value)
-        }
-      />
+                  <input
+                    type="text"
+                    placeholder="Year"
+                    value={edu.year}
+                    onChange={(e) =>
+                      handleEducationChange(index, "year", e.target.value)
+                    }
+                  />
 
-      <input
-        type="text"
-        placeholder="Year"
-        value={edu.year}
-        onChange={(e) =>
-          handleEducationChange(index, "year", e.target.value)
-        }
-      />
+                  <input
+                    type="text"
+                    placeholder="CGPA / Percentage"
+                    value={edu.cgpa}
+                    onChange={(e) =>
+                      handleEducationChange(index, "cgpa", e.target.value)
+                    }
+                  />
 
-      <input
-        type="text"
-        placeholder="CGPA / Percentage"
-        value={edu.cgpa}
-        onChange={(e) =>
-          handleEducationChange(index, "cgpa", e.target.value)
-        }
-      />
+                  {educationList.length > 1 && (
+                    <button
+                      type="button"
+                      className="remove-edu-btn"
+                      onClick={() => removeEducation(index)}
+                    >
+                      Remove
+                    </button>
+                  )}
+                </div>
+              ))}
 
-      {educationList.length > 1 && (
-        <button
-          type="button"
-          className="remove-edu-btn"
-          onClick={() => removeEducation(index)}
-        >
-          Remove
-        </button>
-      )}
-    </div>
-  ))}
+              <button type="button" className="add-edu-btn" onClick={addEducation}>
+                + Add More Education
+              </button>
+            </div>
+          </FormAccordion>
 
-  <button
-    type="button"
-    className="add-edu-btn"
-    onClick={addEducation}
-  >
-    + Add More Education
-  </button>
-</div>
-</FormAccordion>
+          <FormAccordion
+            title="💼 Experience"
+            sectionId="experience"
+            activeSection={activeSection}
+            setActiveSection={setActiveSection}
+          >
+            <div className="builder-box">
+              <h3>Experience Details</h3>
 
-<FormAccordion
-  title="💼 Experience"
-  sectionId="experience"
-  activeSection={activeSection}
-  setActiveSection={setActiveSection}
->
-<div className="builder-box">
-  <h3>Experience Details</h3>
+              {experienceList.map((exp, index) => (
+                <div key={index} className="builder-card">
+                  <input
+                    placeholder="Company Name"
+                    value={exp.company}
+                    onChange={(e) =>
+                      handleExperienceChange(index, "company", e.target.value)
+                    }
+                  />
 
-  {experienceList.map((exp, index) => (
-    <div key={index} className="builder-card">
-      <input
-        placeholder="Company Name"
-        value={exp.company}
-        onChange={(e) =>
-          handleExperienceChange(index, "company", e.target.value)
-        }
-      />
+                  <input
+                    placeholder="Job Role"
+                    value={exp.role}
+                    onChange={(e) =>
+                      handleExperienceChange(index, "role", e.target.value)
+                    }
+                  />
 
-      <input
-        placeholder="Job Role"
-        value={exp.role}
-        onChange={(e) =>
-          handleExperienceChange(index, "role", e.target.value)
-        }
-      />
+                  <input
+                    placeholder="Duration"
+                    value={exp.duration}
+                    onChange={(e) =>
+                      handleExperienceChange(index, "duration", e.target.value)
+                    }
+                  />
 
-      <input
-        placeholder="Duration"
-        value={exp.duration}
-        onChange={(e) =>
-          handleExperienceChange(index, "duration", e.target.value)
-        }
-      />
+                  <textarea
+                    placeholder="Work Description"
+                    value={exp.description}
+                    onChange={(e) =>
+                      handleExperienceChange(index, "description", e.target.value)
+                    }
+                  />
 
-      <textarea
-        placeholder="Work Description"
-        value={exp.description}
-        onChange={(e) =>
-          handleExperienceChange(index, "description", e.target.value)
-        }
-      />
+                  {experienceList.length > 1 && (
+                    <button
+                      type="button"
+                      className="remove-item-btn"
+                      onClick={() => removeExperience(index)}
+                    >
+                      Remove Experience
+                    </button>
+                  )}
+                </div>
+              ))}
 
-      {experienceList.length > 1 && (
-        <button
-          type="button"
-          className="remove-item-btn"
-          onClick={() => removeExperience(index)}
-        >
-          Remove Experience
-        </button>
-      )}
-    </div>
-  ))}
+              <button
+                type="button"
+                className="add-item-btn"
+                onClick={addExperience}
+              >
+                + Add More Experience
+              </button>
+            </div>
+          </FormAccordion>
 
-  <button type="button" className="add-item-btn" onClick={addExperience}>
-    + Add More Experience
-  </button>
-</div>
-</FormAccordion>
+          <FormAccordion
+            title="🚀 Projects"
+            sectionId="projects"
+            activeSection={activeSection}
+            setActiveSection={setActiveSection}
+          >
+            <div className="builder-box">
+              <h3>Project Details</h3>
 
+              {projectList.map((project, index) => (
+                <div key={index} className="builder-card">
+                  <input
+                    placeholder="Project Name"
+                    value={project.name}
+                    onChange={(e) =>
+                      handleProjectChange(index, "name", e.target.value)
+                    }
+                  />
 
+                  <input
+                    placeholder="Tech Stack"
+                    value={project.tech}
+                    onChange={(e) =>
+                      handleProjectChange(index, "tech", e.target.value)
+                    }
+                  />
 
-<FormAccordion
-  title="🚀 Projects"
-  sectionId="projects"
-  activeSection={activeSection}
-  setActiveSection={setActiveSection}
->
-<div className="builder-box">
-  <h3>Project Details</h3>
+                  <input
+                    placeholder="Live URL"
+                    value={project.live}
+                    onChange={(e) =>
+                      handleProjectChange(index, "live", e.target.value)
+                    }
+                  />
 
-  {projectList.map((project, index) => (
-    <div key={index} className="builder-card">
-      <input
-        placeholder="Project Name"
-        value={project.name}
-        onChange={(e) =>
-          handleProjectChange(index, "name", e.target.value)
-        }
-      />
+                  <input
+                    placeholder="GitHub URL"
+                    value={project.github}
+                    onChange={(e) =>
+                      handleProjectChange(index, "github", e.target.value)
+                    }
+                  />
 
-      <input
-        placeholder="Tech Stack"
-        value={project.tech}
-        onChange={(e) =>
-          handleProjectChange(index, "tech", e.target.value)
-        }
-      />
+                  <textarea
+                    placeholder="Project Description"
+                    value={project.description}
+                    onChange={(e) =>
+                      handleProjectChange(index, "description", e.target.value)
+                    }
+                  />
 
-      <input
-        placeholder="Live URL"
-        value={project.live}
-        onChange={(e) =>
-          handleProjectChange(index, "live", e.target.value)
-        }
-      />
+                  {projectList.length > 1 && (
+                    <button
+                      type="button"
+                      className="remove-item-btn"
+                      onClick={() => removeProject(index)}
+                    >
+                      Remove Project
+                    </button>
+                  )}
+                </div>
+              ))}
 
-      <input
-        placeholder="GitHub URL"
-        value={project.github}
-        onChange={(e) =>
-          handleProjectChange(index, "github", e.target.value)
-        }
-      />
-
-      <textarea
-        placeholder="Project Description"
-        value={project.description}
-        onChange={(e) =>
-          handleProjectChange(index, "description", e.target.value)
-        }
-      />
-
-      {projectList.length > 1 && (
-        <button
-          type="button"
-          className="remove-item-btn"
-          onClick={() => removeProject(index)}
-        >
-          Remove Project
-        </button>
-      )}
-    </div>
-  ))}
-
-  <button type="button" className="add-item-btn" onClick={addProject}>
-    + Add More Project
-  </button>
-</div>
-</FormAccordion>
-
-
-
-
-
-<div className="section-order-box">
-  <h3>Resume Section Order</h3>
-
-  {sectionOrder.map((section, index) => (
-    <div key={section} className="section-order-item">
-      <span>{section.charAt(0).toUpperCase() + section.slice(1)}</span>
-
-      <div>
-        <button
-          type="button"
-          onClick={() => moveSection(index, "up")}
-          disabled={index === 0}
-        >
-          ↑
-        </button>
-
-        <button
-          type="button"
-          onClick={() => moveSection(index, "down")}
-          disabled={index === sectionOrder.length - 1}
-        >
-          ↓
-        </button>
-      </div>
-    </div>
-  ))}
-</div>
-
-
+              <button type="button" className="add-item-btn" onClick={addProject}>
+                + Add More Project
+              </button>
+            </div>
+          </FormAccordion>
 
           <button className="download-resume-btn" onClick={downloadPDF}>
-            
             ⬇ Download Resume
           </button>
-          
 
           <p className="download-limit">
             Free Downloads Used: {getUsage(TOOL_NAME)}/{FREE_LIMIT}
@@ -813,23 +738,21 @@ const verifyRes = await fetch(`${API_BASE_URL}/api/verify-payment`, {
         </div>
 
         <div className="resume-preview-wrap">
-            {template === "professional" && (
-  <div className="profile-score-box outside-score">
-    <span>Profile Completion</span>
-    <strong>{completionPercent}%</strong>
+          {template === "professional" && (
+            <div className="profile-score-box outside-score">
+              <span>Profile Completion</span>
+              <strong>{completionPercent}%</strong>
 
-    <div className="score-bar">
-      <div
-        className="score-fill"
-        style={{ width: `${completionPercent}%` }}
-      />
-    </div>
-  </div>
-)}
-        <div
-  ref={resumeRef}
-  className={`resume-preview ${template}-template`}
->
+              <div className="score-bar">
+                <div
+                  className="score-fill"
+                  style={{ width: `${completionPercent}%` }}
+                />
+              </div>
+            </div>
+          )}
+
+          <div ref={resumeRef} className={`resume-preview ${template}-template`}>
             <div className="resume-header">
               <div>
                 <h1>{form.name}</h1>
@@ -854,108 +777,133 @@ const verifyRes = await fetch(`${API_BASE_URL}/api/verify-payment`, {
                 )}
               </div>
 
-              {photo && (
-                <img src={photo} alt="Profile" className="resume-photo" />
-              )}
+              {photo && <img src={photo} alt="Profile" className="resume-photo" />}
             </div>
 
             {sectionOrder.map((section) => {
-  if (section === "summary") {
-    return (
-      <Section
-        key={section}
-        title={template === "normal" ? "Career Objective" : "Profile Summary"}
-        content={form.summary}
-      />
-    );
-  }
+              if (section === "summary") {
+                return (
+                  <Section
+                    key={section}
+                    title={
+                      template === "normal" ? "Career Objective" : "Profile Summary"
+                    }
+                    content={form.summary}
+                  />
+                );
+              }
 
-  if (section === "skills") {
-    if (template === "professional" && skillsArray.length > 0) {
-      return (
-        <div key={section} className="resume-section">
-          <h2>Technical Skills</h2>
-          <div className="skills-chip-box">
-            {skillsArray.map((skill) => (
-              <span key={skill} className="skill-chip">
-                {skill}
-              </span>
-            ))}
+              if (section === "skills") {
+                if (template === "professional" && skillsArray.length > 0) {
+                  return (
+                    <div key={section} className="resume-section">
+                      <h2>Technical Skills</h2>
+                      <div className="skills-chip-box">
+                        {skillsArray.map((skill) => (
+                          <span key={skill} className="skill-chip">
+                            {skill}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  );
+                }
+
+                return (
+                  <Section
+                    key={section}
+                    title={template === "developer" ? "Technical Skills" : "Skills"}
+                    content={form.skills}
+                  />
+                );
+              }
+
+              if (section === "experience") {
+                return (
+                  <ExperienceSection
+                    key={section}
+                    experienceList={experienceList}
+                  />
+                );
+              }
+
+              if (section === "projects") {
+                return (
+                  <ProjectSection key={section} projectList={projectList} />
+                );
+              }
+
+              if (section === "education") {
+                return (
+                  <EducationSection
+                    key={section}
+                    educationList={educationList}
+                  />
+                );
+              }
+
+              if (section === "certifications") {
+                return (
+                  <Section
+                    key={section}
+                    title="Certifications"
+                    content={form.certifications}
+                  />
+                );
+              }
+
+              if (section === "languages") {
+                return (
+                  <Section
+                    key={section}
+                    title={template === "normal" ? "Languages Known" : "Languages"}
+                    content={form.languages}
+                  />
+                );
+              }
+
+              return null;
+            })}
+
+            {template === "normal" && (
+              <div className="resume-section">
+                <h2>Declaration</h2>
+                <p>
+                  I hereby declare that the information provided above is true and
+                  correct to the best of my knowledge.
+                </p>
+              </div>
+            )}
           </div>
         </div>
-      );
-    }
 
-    return (
-      <Section
-        key={section}
-        title={template === "developer" ? "Technical Skills" : "Skills"}
-        content={form.skills}
-      />
-    );
-  }
+        <div className="section-order-panel">
+          <div className="section-order-box">
+            <h3>Resume Section Order</h3>
 
-  if (section === "experience") {
-    return (
-      <ExperienceSection
-        key={section}
-        experienceList={experienceList}
-      />
-    );
-  }
+            {sectionOrder.map((section, index) => (
+              <div key={section} className="section-order-item">
+                <span>{section.charAt(0).toUpperCase() + section.slice(1)}</span>
 
-  if (section === "projects") {
-    return (
-      <ProjectSection
-        key={section}
-        projectList={projectList}
-      />
-    );
-  }
+                <div>
+                  <button
+                    type="button"
+                    onClick={() => moveSection(index, "up")}
+                    disabled={index === 0}
+                  >
+                    ↑
+                  </button>
 
-  if (section === "education") {
-    return (
-      <EducationSection
-        key={section}
-        educationList={educationList}
-      />
-    );
-  }
-
-  if (section === "certifications") {
-    return (
-      <Section
-        key={section}
-        title="Certifications"
-        content={form.certifications}
-      />
-    );
-  }
-
-  if (section === "languages") {
-    return (
-      <Section
-        key={section}
-        title={template === "normal" ? "Languages Known" : "Languages"}
-        content={form.languages}
-      />
-    );
-  }
-
-  return null;
-})}
-
-{template === "normal" && (
-  <div className="resume-section">
-    <h2>Declaration</h2>
-    <p>
-      I hereby declare that the information provided above is true and correct
-      to the best of my knowledge.
-    </p>
-  </div>
-)}
-
-           
+                  <button
+                    type="button"
+                    onClick={() => moveSection(index, "down")}
+                    disabled={index === sectionOrder.length - 1}
+                  >
+                    ↓
+                  </button>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>
@@ -963,14 +911,9 @@ const verifyRes = await fetch(`${API_BASE_URL}/api/verify-payment`, {
   );
 }
 
-
 function EducationSection({ educationList }) {
   const validEducation = educationList.filter(
-    (edu) =>
-      edu.degree ||
-      edu.institute ||
-      edu.year ||
-      edu.cgpa
+    (edu) => edu.degree || edu.institute || edu.year || edu.cgpa
   );
 
   if (validEducation.length === 0) return null;
@@ -996,7 +939,6 @@ function EducationSection({ educationList }) {
     </div>
   );
 }
-
 
 function ExperienceSection({ experienceList }) {
   const validExperience = experienceList.filter(
@@ -1058,7 +1000,6 @@ function ProjectSection({ projectList }) {
   );
 }
 
-
 function FormAccordion({
   title,
   sectionId,
@@ -1072,27 +1013,19 @@ function FormAccordion({
         type="button"
         className="accordion-header"
         onClick={() =>
-          setActiveSection(
-            activeSection === sectionId ? "" : sectionId
-          )
+          setActiveSection(activeSection === sectionId ? "" : sectionId)
         }
       >
         <span>{title}</span>
-        <span>
-          {activeSection === sectionId ? "−" : "+"}
-        </span>
+        <span>{activeSection === sectionId ? "−" : "+"}</span>
       </button>
 
       {activeSection === sectionId && (
-        <div className="accordion-body">
-          {children}
-        </div>
+        <div className="accordion-body">{children}</div>
       )}
     </div>
   );
 }
-
-
 
 function Section({ title, content }) {
   if (!content) return null;
@@ -1104,4 +1037,3 @@ function Section({ title, content }) {
     </div>
   );
 }
-
